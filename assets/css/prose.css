@@ -1,0 +1,92 @@
+/* 記事本文。読み物として成立する行長・行間にする。 */
+.prose {
+  max-width: var(--measure);   /* 38em。40em を超えない */
+  font-size: 1.02rem;
+  line-height: 1.95;
+}
+
+.prose h2 {
+  font-size: 1.22rem;
+  margin: var(--s-6) 0 var(--s-3);
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--line-soft);
+  scroll-margin-top: 5rem;
+}
+.prose h2:first-child { margin-top: 0; }
+
+.prose h3 {
+  font-size: 1.05rem;
+  margin: var(--s-5) 0 var(--s-2);
+  scroll-margin-top: 5rem;
+}
+
+.prose strong { font-weight: 700; }
+
+/* 原典からの引用。著者自身の強調（blockquote）と見た目で区別する */
+.srcquote {
+  margin: var(--s-4) 0;
+  padding: var(--s-4);
+  background: var(--bg-sunken);
+  border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--ink-faint);
+  border-radius: var(--r-md);
+}
+.srcquote blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 1.02em;
+}
+.srcquote figcaption {
+  margin-top: var(--s-3);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+.srcquote figcaption::before { content: "出典　"; }
+
+/* 記事間の相互参照 */
+.xref { border-bottom: 1px dotted currentColor; }
+.xref-missing { color: var(--warn); }
+
+/* 記事の冒頭に必ず出す帯 */
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  align-items: center;
+  padding: var(--s-3) 0 var(--s-4);
+  margin-bottom: var(--s-5);
+  border-bottom: 1px solid var(--line-soft);
+}
+.article-meta__lens { font-size: 0.82rem; color: var(--ink-mute); }
+
+.article-claim {
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.8;
+  margin: 0 0 var(--s-5);
+  padding: var(--s-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  max-width: var(--measure);
+}
+
+/* 本文の下に並ぶ補足（出典一覧・反証条件・被リンク） */
+.article-foot {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  max-width: var(--measure);
+}
+.article-foot h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: var(--s-5) 0 var(--s-2);
+}
+.article-foot ul { padding-left: 1.2em; }
+.article-foot li { color: var(--ink-mute); font-size: 0.92rem; }

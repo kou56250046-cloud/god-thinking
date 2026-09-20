@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>仮説工房</title>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/prose.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="site-head__inner">
+    <a class="brand" href="#/">仮説工房</a>
+    <form class="site-search" id="searchForm" role="search">
+      <label class="visually-hidden" for="searchInput">仮説を検索</label>
+      <input id="searchInput" type="search" placeholder="仮説を検索" autocomplete="off">
+    </form>
+    <nav class="site-nav">
+      <a href="#/" data-nav>仮説</a>
+      <a href="#/questions" data-nav>問い</a>
+      <a href="#/matrix" data-nav>マトリクス</a>
+      <a href="#/mines" data-nav>地雷</a>
+    </nav>
+  </div>
+</header>
+
+<!-- このツールが何を主張しないか。常時表示する。文言は仕様で確定している。 -->
+<div class="disclaimer">
+  <p>ここにあるのは仮説です。真理の主張ではありません。各仮説には、それが原典の記述なのか、このツールの推論なのか、科学の比喩にすぎないのかが明示されています。反証条件のない仮説は、この工房には置かれません。</p>
+</div>
+
+<main class="shell" id="view"></main>
+
+<!-- ビルドの生成物。まだビルドしていなければ読み込みに失敗するが、
+     Store が既定値で受けるので画面は「まだ記事がない」状態として動く。 -->
+<script src="data/studio.js"></script>
+<script src="data/hypotheses.js"></script>
+<script src="data/matrix.js"></script>
+<script src="data/questions.js"></script>
+
+<script src="assets/js/dom.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/toc.js"></script>
+<script src="assets/js/router.js"></script>
+
+<script src="assets/js/views/partials.js"></script>
+<script src="assets/js/views/list.js"></script>
+<script src="assets/js/views/article.js"></script>
+<script src="assets/js/views/questions.js"></script>
+<script src="assets/js/views/matrix.js"></script>
+<script src="assets/js/views/mines.js"></script>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

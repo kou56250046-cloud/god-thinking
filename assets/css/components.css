@@ -1,0 +1,190 @@
+/* カード・チップ・バッジ・マトリクスなどの部品。 */
+
+/* ── カード ── */
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.card:hover { border-color: var(--accent); }
+.card__title { font-size: 1.05rem; }
+.card__title a { color: var(--ink); }
+.card__claim { color: var(--ink-mute); font-size: 0.92rem; margin: 0; }
+.card__foot {
+  margin-top: auto;
+  padding-top: var(--s-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  align-items: center;
+}
+
+/* ── バッジ（mode / terrain / lens） ── */
+.badge {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.6em;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.badge--mode-比喩        { background: var(--analogy-bg); color: var(--analogy); border-color: var(--analogy); }
+.badge--mode-構造的対応  { background: var(--iso-bg);     color: var(--iso);     border-color: var(--iso); }
+.badge--terrain {
+  background: transparent;
+  color: var(--ink-mute);
+  border-color: var(--line);
+  font-weight: 400;
+}
+.chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 0.1em 0.55em;
+  border-radius: var(--r-sm);
+  background: var(--bg-sunken);
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+
+/* ── 絞り込み ── */
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-bottom: var(--s-5);
+}
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  align-items: baseline;
+}
+.filter-row__label {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  min-width: 4.5em;
+}
+.filter-btn {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.15em 0.7em;
+  font-size: 0.82rem;
+  color: var(--ink-mute);
+}
+.filter-btn.is-on {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ── 空の状態 ── */
+.empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-6) var(--s-4);
+  text-align: center;
+  color: var(--ink-mute);
+}
+.empty__mark { font-size: 1.6rem; display: block; margin-bottom: var(--s-2); }
+.empty code { font-size: 0.86em; }
+
+/* ── 観点マトリクス ── */
+.matrix { overflow-x: auto; }
+.matrix table { min-width: 44rem; font-size: 0.82rem; }
+.matrix th { position: sticky; top: 0; }
+.matrix th.matrix__rowhead {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  min-width: 9rem;
+}
+.matrix td { text-align: center; padding: var(--s-2); }
+.matrix td.is-filled { background: var(--accent-bg); }
+/* 未着手。次に書くマス。該当なしと色でも文字でも区別する */
+.matrix td.is-planned {
+  background: var(--analogy-bg);
+  color: var(--analogy);
+  cursor: help;
+}
+.matrix td.is-na {
+  background: var(--bg-sunken);
+  color: var(--ink-faint);
+  cursor: help;
+}
+.matrix__slug { display: block; font-size: 0.74rem; }
+.matrix__label { font-size: 0.72rem; letter-spacing: 0.08em; }
+.matrix__legend {
+  display: flex;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-3);
+  font-size: 0.82rem;
+  color: var(--ink-mute);
+}
+.matrix__swatch {
+  display: inline-block;
+  width: 1em; height: 1em;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  vertical-align: -0.15em;
+  margin-right: 0.35em;
+}
+.matrix__swatch--filled { background: var(--accent-bg); }
+.matrix__swatch--planned { background: var(--analogy-bg); }
+.matrix__swatch--na { background: var(--bg-sunken); }
+
+/* ── 問い一覧 ── */
+.question {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+}
+.question__text { font-size: 1.02rem; margin: 0 0 var(--s-2); }
+.question__from { font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
+
+/* ── 地雷一覧 ── */
+.mine {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+}
+.mine__id { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); }
+.mine__position { font-size: 1.02rem; margin: var(--s-1) 0; }
+.mine__note { color: var(--ink-mute); font-size: 0.9rem; margin: 0 0 var(--s-2); }
+.mine__touch {
+  font-size: 0.86rem;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  background: var(--bg-sunken);
+}
+.mine__touch--yes { background: var(--warn-bg); color: var(--warn); }
+
+/* ── 検索結果 ── */
+.result { border-bottom: 1px solid var(--line-soft); padding: var(--s-4) 0; }
+.result__snippet { color: var(--ink-mute); font-size: 0.9rem; margin: var(--s-2) 0 0; }
+
+/* ── 目次 ── */
+.toc { font-size: 0.86rem; }
+.toc h4 {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--s-2);
+}
+.toc ol { list-style: none; padding: 0; margin: 0; }
+.toc a { color: var(--ink-mute); display: block; padding: 0.15em 0; }
+.toc a.lv3 { padding-left: 1em; font-size: 0.94em; }
+.toc a.is-active { color: var(--accent); font-weight: 700; }

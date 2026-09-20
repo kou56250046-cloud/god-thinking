@@ -1,0 +1,126 @@
+/* 画面の骨格。幅 360px で横スクロールを出さないことを前提に組む。 */
+.shell {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 var(--s-4) var(--s-6);
+}
+
+/* ── ヘッダ ── */
+.site-head {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-raised);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-head__inner {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.brand {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.brand:hover { text-decoration: none; }
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  margin-left: auto;
+}
+
+.site-nav a {
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-md);
+  color: var(--ink-mute);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.site-nav a:hover { background: var(--bg-sunken); text-decoration: none; }
+.site-nav a.is-active { background: var(--accent-bg); color: var(--accent); font-weight: 700; }
+
+.site-search {
+  flex: 1 1 12rem;
+  min-width: 8rem;
+}
+.site-search input {
+  width: 100%;
+  padding: var(--s-2) var(--s-3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--bg);
+}
+
+/* ── 断り書き。常時表示する ── */
+.disclaimer {
+  background: var(--bg-sunken);
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink-mute);
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+.disclaimer p {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-4);
+}
+
+/* ── ページ見出し ── */
+.page-head {
+  padding: var(--s-5) 0 var(--s-4);
+  border-bottom: 1px solid var(--line-soft);
+  margin-bottom: var(--s-5);
+}
+.page-head__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--s-1);
+}
+.page-head h1 { font-size: 1.6rem; }
+.page-head__lead {
+  margin: var(--s-2) 0 0;
+  color: var(--ink-mute);
+  max-width: var(--measure);
+}
+
+/* ── グリッド ── */
+.grid {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+
+.stack > * + * { margin-top: var(--s-4); }
+
+/* ── 記事レイアウト ── */
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-5);
+}
+
+@media (min-width: 60rem) {
+  .article-layout { grid-template-columns: minmax(0, 1fr) 15rem; }
+  .article-aside { position: sticky; top: 5rem; align-self: start; }
+}
+
+@media (max-width: 30rem) {
+  .shell { padding-left: var(--s-3); padding-right: var(--s-3); }
+  .site-head__inner { padding-left: var(--s-3); padding-right: var(--s-3); }
+  .disclaimer p { padding-left: var(--s-3); padding-right: var(--s-3); }
+  .site-nav { width: 100%; margin-left: 0; }
+  .page-head h1 { font-size: 1.35rem; }
+}

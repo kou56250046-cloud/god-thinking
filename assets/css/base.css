@@ -1,0 +1,97 @@
+/* 要素の既定。リセットは最小限にとどめる。 */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;   /* 長い slug や URL で横スクロールを出さない */
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.45;
+  font-weight: 700;
+  margin: 0;
+}
+
+p { margin: 0 0 1em; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { margin: 0 0 1em; padding-left: 1.4em; }
+li { margin: 0.2em 0; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--bg-sunken);
+  border-radius: var(--r-sm);
+  padding: 0.1em 0.35em;
+}
+
+pre {
+  background: var(--bg-sunken);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-md);
+  padding: var(--s-3);
+  overflow-x: auto;
+}
+pre code { background: none; padding: 0; }
+
+blockquote {
+  margin: 0 0 1em;
+  padding: 0 0 0 var(--s-4);
+  border-left: 3px solid var(--line);
+  color: var(--ink-mute);
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--s-5) 0; }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.94em; }
+th, td {
+  border: 1px solid var(--line);
+  padding: var(--s-2) var(--s-3);
+  text-align: left;
+  vertical-align: top;
+}
+th { background: var(--bg-sunken); font-weight: 700; }
+
+.table-scroll { overflow-x: auto; margin: 0 0 1em; }
+
+mark {
+  background: var(--accent-bg);
+  color: var(--ink);
+  border-radius: var(--r-sm);
+  padding: 0 0.15em;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

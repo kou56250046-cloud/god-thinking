@@ -1,0 +1,14 @@
+# 原典資料。著作権があるためリポジトリに含めない。
+# ビルドは docs/ を読むだけで、生成物には :::quote の引用のみが載る。
+docs/
+
+# Python
+__pycache__/
+*.pyc
+
+# anchor の控え。原典の逐語なので公開しない。
+# 引用（:::quote）は出典つきで公開物に載るが、anchor は載せない。
+config/anchors.local.json
+
+# ローカルのパスが入る
+.claude/settings.local.json

@@ -1,0 +1,81 @@
+/* 色・間隔・書体のトークン。明暗どちらでも本文のコントラスト比が 4.5:1 以上になるよう選ぶ。 */
+:root {
+  --bg:        #f7f6f3;
+  --bg-raised: #ffffff;
+  --bg-sunken: #eceae5;
+  --ink:       #1c1b18;   /* 本文。#f7f6f3 に対して 15.3:1 */
+  --ink-mute:  #55514a;   /* 補助。#f7f6f3 に対して  7.4:1 */
+  --ink-faint: #68645c;   /* 空白マスなど。沈床(#eceae5)上でも 4.90:1 */
+  --line:      #d8d4cc;
+  --line-soft: #e6e3dc;
+
+  /* 判定・分類の色。彩度を抑えて本文の邪魔をしない */
+  --analogy:     #7a5a2e;   /* 比喩 */
+  --analogy-bg:  #f3e9d8;
+  --iso:         #2f5d50;   /* 構造的対応 */
+  --iso-bg:      #dcebe5;
+  --accent:      #3a5a8c;
+  --accent-bg:   #e2e9f4;
+  --warn:        #8a3a3a;
+  --warn-bg:     #f3e0de;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 18px;
+  --s-5: 28px;
+  --s-6: 44px;
+
+  --font: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
+  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  /* 記事本文の行長。40em を超えると目が戻れなくなる */
+  --measure: 38em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #17181a;
+    --bg-raised: #202225;
+    --bg-sunken: #121314;
+    --ink:       #ece9e3;   /* #17181a に対して 13.8:1 */
+    --ink-mute:  #b4aea4;   /*                   7.6:1 */
+    --ink-faint: #999289;   /* 浮上面(#202225)上でも 5.18:1 */
+    --line:      #34363a;
+    --line-soft: #292b2e;
+
+    --analogy:     #d9b678;
+    --analogy-bg:  #3a3122;
+    --iso:         #8fcdb8;
+    --iso-bg:      #223530;
+    --accent:      #9db8e0;
+    --accent-bg:   #222c3a;
+    --warn:        #e29a97;
+    --warn-bg:     #3a2524;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:        #17181a;
+  --bg-raised: #202225;
+  --bg-sunken: #121314;
+  --ink:       #ece9e3;
+  --ink-mute:  #b4aea4;
+  --ink-faint: #999289;
+  --line:      #34363a;
+  --line-soft: #292b2e;
+
+  --analogy:     #d9b678;
+  --analogy-bg:  #3a3122;
+  --iso:         #8fcdb8;
+  --iso-bg:      #223530;
+  --accent:      #9db8e0;
+  --accent-bg:   #222c3a;
+  --warn:        #e29a97;
+  --warn-bg:     #3a2524;
+}
