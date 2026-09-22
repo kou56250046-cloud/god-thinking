@@ -1,0 +1,46 @@
+{
+  "name": "仮説工房",
+  "short_name": "仮説工房",
+  "description": "神の心情と人間創造についての理論的仮説を書き、読み、問いを立てるための工房。",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#17181a",
+  "theme_color": "#17181a",
+  "categories": ["education", "books"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "観点マトリクス",
+      "url": "./#/matrix",
+      "description": "8 論点 × 8 観点。空白が見える"
+    },
+    {
+      "name": "開かれた問い",
+      "url": "./#/questions",
+      "description": "全記事の問いを横断で見る"
+    }
+  ]
+}

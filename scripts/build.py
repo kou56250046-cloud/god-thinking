@@ -11,6 +11,7 @@
 依存ゼロ。Python 3.11 標準ライブラリのみ。
 """
 
+import hashlib
 import io
 import json
 import os
@@ -144,6 +145,99 @@ def write_all(files):
                 os.remove(tmp_path)
 
 
+# ── Service Worker ──────────────────────────────
+# キャッシュする app shell。ここに無いものはネットワークへ行く。
+SHELL = [
+    "./",
+    "index.html",
+    "manifest.webmanifest",
+    "assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
+    "assets/css/components.css", "assets/css/prose.css",
+    "assets/js/dom.js", "assets/js/store.js", "assets/js/search.js",
+    "assets/js/toc.js", "assets/js/router.js", "assets/js/app.js",
+    "assets/js/views/partials.js", "assets/js/views/list.js",
+    "assets/js/views/article.js", "assets/js/views/questions.js",
+    "assets/js/views/matrix.js", "assets/js/views/mines.js",
+    "data/studio.js", "data/hypotheses.js", "data/matrix.js", "data/questions.js",
+    "assets/icons/icon-192.png", "assets/icons/icon-512.png",
+    "assets/icons/icon-maskable-512.png",
+    "assets/icons/apple-touch-icon-180.png", "assets/icons/favicon-32.png",
+]
+
+SW_TEMPLATE = """%(banner)s
+/* app shell をキャッシュして、オフラインでも開けるようにする。
+
+   版は app shell の中身のハッシュから決まる。手で上げる必要はない。
+   中身が変われば版が変わり、古いキャッシュは activate で消える。
+   file:// では Service Worker が動かないので、登録は index.html 側で弾いている。 */
+const VERSION = '%(version)s';
+const CACHE = 'god-thinking-' + VERSION;
+const SHELL = %(shell)s;
+
+self.addEventListener('install', function (ev) {
+  ev.waitUntil(
+    caches.open(CACHE)
+      .then(function (c) {
+        // **cache: 'reload' が要る。** 既定では addAll がブラウザの HTTP キャッシュを
+        // 経由するため、版を上げても古いファイルがそのまま入りうる。
+        // 実際それで、新しい版のキャッシュに古い matrix.js が入る事故が起きた。
+        return c.addAll(SHELL.map(function (u) {
+          return new Request(u, { cache: 'reload' });
+        }));
+      })
+      .then(function () { return self.skipWaiting(); })
+  );
+});
+
+self.addEventListener('activate', function (ev) {
+  ev.waitUntil(
+    caches.keys().then(function (keys) {
+      return Promise.all(keys.map(function (k) {
+        return k === CACHE ? null : caches.delete(k);
+      }));
+    }).then(function () { return self.clients.claim(); })
+  );
+});
+
+self.addEventListener('fetch', function (ev) {
+  if (ev.request.method !== 'GET') return;
+  ev.respondWith(
+    caches.match(ev.request).then(function (hit) {
+      if (hit) return hit;
+      return fetch(ev.request).catch(function () {
+        // 画面遷移はハッシュルーティングなので、外れたら index.html を返す
+        if (ev.request.mode === 'navigate') return caches.match('index.html');
+        throw new Error('offline');
+      });
+    })
+  );
+});
+"""
+
+
+def build_sw():
+    """sw.js を生成する。版は app shell の中身から決める。
+
+    手でバージョンを上げる作りにすると、上げ忘れて古い画面が出続ける。
+    ハッシュにしておけば、中身が変わったときだけ確実に版が変わる。
+    """
+    h = hashlib.sha256()
+    for rel in SHELL:
+        if rel == "./":
+            continue
+        path = os.path.join(ROOT, rel.replace("/", os.sep))
+        if os.path.exists(path):
+            h.update(rel.encode("utf-8"))
+            h.update(io.open(path, "rb").read())
+    version = h.hexdigest()[:12]
+    body = SW_TEMPLATE % {
+        "banner": BANNER,
+        "version": version,
+        "shell": json.dumps(SHELL, indent=2),
+    }
+    return version, body
+
+
 # ── 本体 ────────────────────────────────────────
 def main():
     print("仮説工房 ビルド")
@@ -272,7 +366,13 @@ def main():
         ("questions.js", render_js("QUESTIONS", questions)),
     ])
 
+    # Service Worker。data/*.js を書いたあとでハッシュを取る。
+    version, sw = build_sw()
+    with io.open(os.path.join(ROOT, "sw.js"), "w", encoding="utf-8") as fh:
+        fh.write(sw)
+
     print("生成: data/hypotheses.js / studio.js / matrix.js / questions.js")
+    print("生成: sw.js（版 %s / app shell %d 件）" % (version, len(SHELL)))
     print("  マトリクス: %d マス中 記事あり %d / 未着手 %d / 該当なし %d"
           % (len(matrix), filled, planned, len(matrix) - filled - planned))
     print("  問い: %d 件" % len(questions))

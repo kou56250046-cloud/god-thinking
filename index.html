@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>仮説工房</title>
+<meta name="description" content="神の心情と人間創造についての理論的仮説を書き、読み、問いを立てるための工房。">
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17181a" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="仮説工房">
+
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/layout.css">
@@ -56,6 +66,20 @@
 <script src="assets/js/views/mines.js"></script>
 
 <script src="assets/js/app.js"></script>
+
+<script>
+/* Service Worker は安全なコンテキストでしか動かない。
+   file:// でダブルクリックして開いたときは navigator.serviceWorker が無いので、
+   触ると落ちる。**この工房は file:// で開けることが最優先の制約**なので、
+   プロトコルを見て弾く。登録に失敗しても画面は普通に動く。 */
+(function () {
+  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  if (!('serviceWorker' in navigator)) return;
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+})();
+</script>
 
 </body>
 </html>

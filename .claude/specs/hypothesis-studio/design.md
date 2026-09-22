@@ -374,6 +374,10 @@ window.Store = {
 | `config/studio.json` | 論点・観点・地雷・既出対応づけ |
 | `hypotheses/*.md` | 仮説記事 6 本 |
 | `data/*.js` | 生成物（コミットする） |
+| `manifest.webmanifest` | PWA の定義。パスはすべて相対 |
+| `sw.js` | Service Worker（**生成物**。版は app shell のハッシュ） |
+| `assets/icons/*.png` | アイコン 5 種（生成物） |
+| `scripts/make_icons.py` | アイコン生成。zlib で PNG を直接書く |
 | `.gitignore` | `docs/` を除外 |
 | `.claude/CLAUDE.md` | プロジェクト個別設定 |
 

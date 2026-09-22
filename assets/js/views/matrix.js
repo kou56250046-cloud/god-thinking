@@ -45,7 +45,8 @@ Views.matrix = (function () {
     var filled = count('filled'), planned = count('planned'), na = count('na');
 
     var head = U.el('tr', null, [
-      U.el('th', { class: 'matrix__rowhead', text: '論点 \\ 観点' }),
+      // バックスラッシュは日本語フォントで円記号に化けるので使わない
+      U.el('th', { class: 'matrix__rowhead', text: '論点 ／ 観点' }),
       studio.lenses.map(function (l) { return U.el('th', { text: l }); })
     ]);
 
