@@ -12,3 +12,6 @@ config/anchors.local.json
 
 # ローカルのパスが入る
 .claude/settings.local.json
+
+# 文体の参考にした書籍のテキスト。著作権があるためリポジトリに含めない。
+書き方/
