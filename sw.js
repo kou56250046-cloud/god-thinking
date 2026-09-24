@@ -4,7 +4,7 @@
    版は app shell の中身のハッシュから決まる。手で上げる必要はない。
    中身が変われば版が変わり、古いキャッシュは activate で消える。
    file:// では Service Worker が動かないので、登録は index.html 側で弾いている。 */
-const VERSION = '36052653c9a0';
+const VERSION = 'decc6bef5fed';
 const CACHE = 'god-thinking-' + VERSION;
 const SHELL = [
   "./",
