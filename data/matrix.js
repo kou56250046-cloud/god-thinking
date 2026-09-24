@@ -128,9 +128,10 @@ window.MATRIX = [
  {
   "topic": "成長期間と間接主管",
   "lens": "熱力学",
-  "slugs": [],
-  "status": "na",
-  "note": "緩和時間は成長の比喩として弱い"
+  "slugs": [
+   "mortality-dissipation"
+  ],
+  "status": "filled"
  },
  {
   "topic": "成長期間と間接主管",
@@ -165,9 +166,10 @@ window.MATRIX = [
  {
   "topic": "成長期間と間接主管",
   "lens": "物理",
-  "slugs": [],
-  "status": "na",
-  "note": "対応する現象が見当たらない"
+  "slugs": [
+   "cosmic-size-growth-time"
+  ],
+  "status": "filled"
  },
  {
   "topic": "成長期間と間接主管",
@@ -287,9 +289,10 @@ window.MATRIX = [
  {
   "topic": "神の悲しみ",
   "lens": "物理",
-  "slugs": [],
-  "status": "na",
-  "note": "対応する現象が無い"
+  "slugs": [
+   "divine-time"
+  ],
+  "status": "filled"
  },
  {
   "topic": "神の悲しみ",
@@ -385,7 +388,8 @@ window.MATRIX = [
   "topic": "愛と授受作用の構造",
   "lens": "数学",
   "slugs": [
-   "adjunction"
+   "adjunction",
+   "awe-accommodation"
   ],
   "status": "filled"
  },
@@ -443,9 +447,10 @@ window.MATRIX = [
  {
   "topic": "宇宙の自律的発展の機構",
   "lens": "数学",
-  "slugs": [],
-  "status": "na",
-  "note": "力学系は複雑系の記事に含める"
+  "slugs": [
+   "unreasonable-mathematics"
+  ],
+  "status": "filled"
  },
  {
   "topic": "宇宙の自律的発展の機構",
@@ -466,15 +471,77 @@ window.MATRIX = [
  {
   "topic": "宇宙の自律的発展の機構",
   "lens": "物理",
-  "slugs": [],
-  "status": "na",
-  "note": "既出の宇宙論の範囲を出ない"
+  "slugs": [
+   "heat-death-eternity"
+  ],
+  "status": "filled"
  },
  {
   "topic": "宇宙の自律的発展の機構",
   "lens": "複雑系",
   "slugs": [
+   "arrival-of-the-fittest",
    "self-organization"
+  ],
+  "status": "filled"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "計算論",
+  "slugs": [],
+  "status": "na",
+  "note": "宇宙をシミュレーションと見る議論は、原典の霊界と形状世界の関係に対応しない"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "熱力学",
+  "slugs": [],
+  "status": "na",
+  "note": "宇宙の熱的死は宇宙の自律的発展×物理の記事で扱う"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "情報理論",
+  "slugs": [
+   "causal-horizon-kinship"
+  ],
+  "status": "filled"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "数学",
+  "slugs": [
+   "awe-accommodation"
+  ],
+  "status": "filled"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "化学",
+  "slugs": [],
+  "status": "na",
+  "note": "生命の起源の化学は進化の記事（複雑系）の前提に含める"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "制御論",
+  "slugs": [],
+  "status": "na",
+  "note": "宇宙の中での人間の位置を目標値と誤差で語る足場が無い"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "物理",
+  "slugs": [
+   "cosmic-size-growth-time"
+  ],
+  "status": "filled"
+ },
+ {
+  "topic": "宇宙と人間の位置",
+  "lens": "複雑系",
+  "slugs": [
+   "arrival-of-the-fittest"
   ],
   "status": "filled"
  }
