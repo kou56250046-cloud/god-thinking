@@ -17,9 +17,10 @@ window.MATRIX = [
  {
   "topic": "創造の動機",
   "lens": "情報理論",
-  "slugs": [],
-  "status": "na",
-  "note": "自己情報だけでは動機に届かない"
+  "slugs": [
+   "self-surprise"
+  ],
+  "status": "filled"
  },
  {
   "topic": "創造の動機",
@@ -149,9 +150,10 @@ window.MATRIX = [
  {
   "topic": "成長期間と間接主管",
   "lens": "化学",
-  "slugs": [],
-  "status": "na",
-  "note": "反応速度論は化学の既存記事に含まれる"
+  "slugs": [
+   "nucleation"
+  ],
+  "status": "filled"
  },
  {
   "topic": "成長期間と間接主管",
@@ -210,6 +212,7 @@ window.MATRIX = [
   "topic": "堕落の機構",
   "lens": "化学",
   "slugs": [
+   "nucleation",
    "transition-state"
   ],
   "status": "filled"
@@ -298,9 +301,10 @@ window.MATRIX = [
  {
   "topic": "復帰と蕩減",
   "lens": "計算論",
-  "slugs": [],
-  "status": "na",
-  "note": "再探索は情報理論の誤り訂正と重複する"
+  "slugs": [
+   "reversible-computation"
+  ],
+  "status": "filled"
  },
  {
   "topic": "復帰と蕩減",
@@ -446,9 +450,10 @@ window.MATRIX = [
  {
   "topic": "宇宙の自律的発展の機構",
   "lens": "化学",
-  "slugs": [],
-  "status": "na",
-  "note": "スケールが合わない"
+  "slugs": [
+   "autocatalytic-closure"
+  ],
+  "status": "filled"
  },
  {
   "topic": "宇宙の自律的発展の機構",
