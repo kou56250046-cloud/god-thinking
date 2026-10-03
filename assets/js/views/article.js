@@ -16,6 +16,22 @@ Views.article = (function () {
     ]);
   }
 
+  /* 反証条件・問いと、それぞれへの仮説回答。answers は items と同じ並びの並行配列。
+     回答は判定ではないので、項目の下に従属させてラベルで区別する。 */
+  function answered(title, items, answers) {
+    if (!items || !items.length) return null;
+    return U.frag([
+      U.el('h3', { text: title }),
+      U.el('ul', null, items.map(function (t, i) {
+        var a = (answers || [])[i];
+        return U.el('li', null, [
+          t,
+          a ? Partials.answer(a) : null
+        ]);
+      }))
+    ]);
+  }
+
   /* 出典。anchor は生成物に無いので、ラベルとファイル名だけを出す。 */
   function sources(h) {
     var list = h.sources || [];
@@ -80,8 +96,8 @@ Views.article = (function () {
           U.el('footer', { class: 'article-foot' }, [
             sources(h),
             section('科学側の典拠', h.science || []),
-            section('反証条件', h.falsifiers || []),
-            section('開かれた問い', h.questions || []),
+            answered('反証条件', h.falsifiers || [], h.falsifierAnswers),
+            answered('開かれた問い', h.questions || [], h.questionAnswers),
             mines(h),
             backlinks(h)
           ])

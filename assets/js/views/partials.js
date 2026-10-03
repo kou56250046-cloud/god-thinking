@@ -22,6 +22,14 @@ window.Partials = (function () {
     return U.el('a', { href: '#/h/' + slug, text: text });
   }
 
+  /* 反証条件・問いへの仮説回答。判定ではないことをラベルで先に言う。 */
+  function answer(text) {
+    return U.el('div', { class: 'answer' }, [
+      U.el('span', { class: 'answer__label', text: '仮説回答' }),
+      U.el('p', { class: 'answer__text', text: text })
+    ]);
+  }
+
   /* 一覧に並ぶカード。 */
   function card(h) {
     return U.el('article', { class: 'card' }, [
@@ -52,6 +60,6 @@ window.Partials = (function () {
 
   return {
     modeBadge: modeBadge, terrainBadge: terrainBadge, chip: chip,
-    lensLine: lensLine, link: link, card: card, empty: empty, noData: noData
+    lensLine: lensLine, link: link, answer: answer, card: card, empty: empty, noData: noData
   };
 })();

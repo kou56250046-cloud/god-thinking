@@ -232,6 +232,7 @@ YAML パーサを標準ライブラリで持てないため **JSON** にする�
 | 24 | `studio.json` の `mines[].source` と `known[].source` が実在するか | 失敗 |
 | 26 | 記事の無いマスすべてが `cells` に `status` と `note` を持つか | 失敗 |
 | 27 | `cells` の `status` が `planned` / `na` のいずれかか | 失敗 |
+| 28 | `falsifier_answers` / `question_answers` が `falsifiers` / `questions` と同数で、各件が空でなく 250 字以内か（仕様 hypothesis-answers） | 失敗 |
 | 25 | 出力フィールドが許可リスト内に収まっているか | 失敗 |
 
 成功時も「検査した項目と件数」を出す。

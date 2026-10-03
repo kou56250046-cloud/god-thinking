@@ -18,6 +18,7 @@ import markdown as M
 REQUIRED_KEYS = [
     "title", "claim", "lens", "topics", "mode", "terrain",
     "sources", "science", "mines", "known", "falsifiers", "questions", "related",
+    "falsifier_answers", "question_answers",
 ]
 
 # 各キーに期待する型。キーの有無だけ見ても、型が違えば結局壊れる。
@@ -25,6 +26,7 @@ EXPECTED_TYPES = {
     "title": "str", "claim": "str", "mode": "str", "terrain": "str",
     "lens": "list[str]", "topics": "list[str]", "science": "list[str]",
     "falsifiers": "list[str]", "questions": "list[str]",
+    "falsifier_answers": "list[str]", "question_answers": "list[str]",
     "related": "list[str]", "known": "list[str]",
     "sources": "list[dict]", "mines": "list[dict]",
 }
@@ -48,6 +50,8 @@ QUOTE_MAX, QUOTE_TOTAL_MAX = 200, 600
 # 同じ原典ファイル内で、引用どうしが最低これだけ離れていること。
 # 近い箇所を継ぎ足して連続した本文を再構成させないための下限。
 QUOTE_MIN_GAP = 500
+# 反証条件・問いへの仮説回答 1 件の上限。本文の代わりにはしない。
+ANSWER_MAX = 250
 
 WS_RE = re.compile(r"[\s　]+")
 H2_RE = re.compile(r"^##[ \t]+(.+?)[ \t]*$")
@@ -449,6 +453,23 @@ def validate_article(art, studio, corpus, slugs, rep, anchors=None):
     rep.count("C19")
     if not fm["questions"]:
         rep.fail(where, "C19", "questions が空")
+
+    # 検査 28: 仮説回答は反証条件・問いと 1 対 1
+    # 並行配列なので、長さがずれると別の項目への回答として表示されてしまう。
+    rep.count("C28")
+    for src_key, ans_key in (("falsifiers", "falsifier_answers"),
+                             ("questions", "question_answers")):
+        if len(fm[ans_key]) != len(fm[src_key]):
+            rep.fail(where, "C28",
+                     "%s が %d 件、%s が %d 件。i 番目が i 番目への回答になるよう揃える"
+                     % (src_key, len(fm[src_key]), ans_key, len(fm[ans_key])))
+        for i, a in enumerate(fm[ans_key]):
+            n = count_chars(a)
+            if n == 0:
+                rep.fail(where, "C28", "%s[%d] が空" % (ans_key, i))
+            elif n > ANSWER_MAX:
+                rep.fail(where, "C28", "%s[%d] が %d 字（%d 字以内）"
+                         % (ans_key, i, n, ANSWER_MAX))
 
     # 検査 20: 参照先の実在
     rep.count("C20")

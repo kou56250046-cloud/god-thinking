@@ -151,6 +151,7 @@
   padding: var(--s-4);
 }
 .question__text { font-size: 1.02rem; margin: 0 0 var(--s-2); }
+.question .answer { margin: 0 0 var(--s-3); }
 .question__from { font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
 
 /* ── 地雷一覧 ── */
@@ -188,3 +189,27 @@
 .toc a { color: var(--ink-mute); display: block; padding: 0.15em 0; }
 .toc a.lv3 { padding-left: 1em; font-size: 0.94em; }
 .toc a.is-active { color: var(--accent); font-weight: 700; }
+
+/* ── 仮説回答 ──
+   反証条件・問いの下に従属させる。本文や問いと取り違えないよう、
+   左罫線とラベルで「答えの仮置き」であることを示す。 */
+.answer {
+  margin: var(--s-2) 0 var(--s-3);
+  padding: var(--s-2) var(--s-3);
+  border-left: 2px solid var(--analogy);
+  background: var(--bg-sunken);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.answer__label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--analogy);
+  margin-bottom: var(--s-1);
+}
+.answer__text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--ink-mute);
+}

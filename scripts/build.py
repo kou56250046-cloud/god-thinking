@@ -87,6 +87,8 @@ def pick_article(art, body_html, plain, chars, backlinks):
         "science": fm["science"],
         "falsifiers": fm["falsifiers"],
         "questions": fm["questions"],
+        "falsifierAnswers": fm["falsifier_answers"],
+        "questionAnswers": fm["question_answers"],
         "related": fm["related"],
         "backlinks": backlinks,
         "sources": [{"label": s.get("label", ""), "file": s.get("file", "")}
@@ -320,8 +322,8 @@ def main():
         out_articles.append(pick_article(
             art, html_body, plain, V.count_chars(art["body"]),
             sorted(backlinks[art["slug"]])))
-        for q in art["fm"]["questions"]:
-            questions.append({"text": q, "slug": art["slug"],
+        for q, a in zip(art["fm"]["questions"], art["fm"]["question_answers"]):
+            questions.append({"text": q, "answer": a, "slug": art["slug"],
                               "title": art["fm"]["title"]})
 
     # マスは 3 状態。記事の有無が cells の指定より優先する。
