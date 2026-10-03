@@ -61,6 +61,7 @@
 }
 
 :root[data-theme="dark"] {
+  color-scheme: dark;   /* 検索欄やスクロールバーも暗くする */
   --bg:        #17181a;
   --bg-raised: #202225;
   --bg-sunken: #121314;

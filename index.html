@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,13 +7,22 @@
 <meta name="description" content="神の心情と人間創造についての理論的仮説を書き、読み、問いを立てるための工房。">
 
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#17181a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#17181a">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="仮説工房">
 
+<script>
+/* 明暗の選択を描画前に反映する。既定はダーク。ここで遅れると一瞬明るく光る。
+   localStorage は file:// やプライベートウィンドウで使えないことがあるので握りつぶす。 */
+(function () {
+  try {
+    var t = localStorage.getItem('god-thinking:theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/layout.css">
@@ -35,6 +44,7 @@
       <a href="#/matrix" data-nav>マトリクス</a>
       <a href="#/mines" data-nav>地雷</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" type="button"></button>
   </div>
 </header>
 
